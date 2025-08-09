@@ -1,2 +1,5 @@
-body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
-#root { padding: 1rem; }
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Your small custom tweaks can stay below if you want */
