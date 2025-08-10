@@ -1,0 +1,37 @@
+name: Phase 1 Development Board
+description: Kanban board to track Phase 1 – Stabilize & Optimize Current Core tasks.
+public: true
+readme: |
+  # Phase 1 Development Board
+  This project tracks all tasks related to Phase 1 of the French learning app:
+  - Core feature fixes
+  - Code refactoring
+  - Theme/UI updates
+  - Quality assurance
+
+views:
+  - name: Board
+    type: board
+    columns:
+      - name: To Do
+        filter: is:issue is:open label:phase1 -label:"In Progress" -label:Done
+      - name: In Progress
+        filter: is:issue is:open label:"In Progress"
+      - name: Done
+        filter: is:issue is:closed label:phase1
+
+automation:
+  - on: issues.labeled
+    if: label == "phase1"
+    then:
+      move: To Do
+
+  - on: issues.labeled
+    if: label == "In Progress"
+    then:
+      move: In Progress
+
+  - on: issues.closed
+    if: label == "phase1"
+    then:
+      move: Done
